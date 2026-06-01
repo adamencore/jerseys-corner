@@ -768,6 +768,7 @@ button { font-family: inherit; cursor: pointer; }
     grid-template-columns: 1fr; gap: 36px;
   }
   .featured-grid { grid-template-columns: 1fr 1fr; }
+  .reviews-grid { grid-template-columns: 1fr 1fr !important; }
   .about-pillars { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }

@@ -302,4 +302,120 @@ function HoursStrip() {
   );
 }
 
-Object.assign(window, { Hero, MenuPreview, AboutPreview, Bestsellers, HoursStrip });
+// ───── Google Reviews ─────
+function GoogleReviews() {
+  const reviews = [
+    {
+      name: 'Sarah M.',
+      rating: 5,
+      date: '2 weeks ago',
+      text: 'Absolutely the best smash burger tacos I\'ve ever had. The house chipotle garlic ranch is addictive. This little corner spot is a hidden gem — family ran it and it shows in every bite.',
+      avatar: 'S',
+    },
+    {
+      name: 'James T.',
+      rating: 5,
+      date: '1 month ago',
+      text: 'The herb butter rib eye is worth every penny. Came out perfectly cooked, pesto mash was incredible. Not your typical burger joint — they\'re doing something special here.',
+      avatar: 'J',
+    },
+    {
+      name: 'Maria R.',
+      rating: 5,
+      date: '3 weeks ago',
+      text: 'Pastrami Reuben on marble rye — chef\'s kiss. The onion tanglers as a side were crispy and perfect. Friendly staff, fast service, great vibe. Already planning my next visit.',
+      avatar: 'M',
+    },
+    {
+      name: 'Derek L.',
+      rating: 5,
+      date: '1 month ago',
+      text: 'Brought the whole family and everyone left happy. Kids loved the grilled cheese, I had the Philly cheesesteak — massive and delicious. This place deserves way more hype.',
+      avatar: 'D',
+    },
+  ];
+
+  const Stars = ({ n }) => (
+    <div style={{ display: 'flex', gap: 2 }}>
+      {[1,2,3,4,5].map(i => (
+        <svg key={i} width="14" height="14" viewBox="0 0 24 24"
+          fill={i <= n ? '#e8942a' : 'none'}
+          stroke={i <= n ? '#e8942a' : 'var(--line)'}
+          strokeWidth="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="section" style={{ background: 'var(--paper)' }} id="reviews">
+      <div className="container">
+        <div className="section-head">
+          <div className="section-eyebrow">Google Reviews</div>
+          <h2>What our guests <em style={{ fontStyle: 'italic', color: 'var(--accent-dark)' }}>are saying.</em></h2>
+          <p className="section-lede">
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              <strong style={{ fontSize: 18, fontFamily: 'var(--font-head)' }}>4.9</strong>
+              <Stars n={5} />
+              <span style={{ color: 'var(--muted)', fontSize: 14 }}>— Based on Google Reviews</span>
+            </span>
+          </p>
+        </div>
+
+        <div className="reviews-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+          {reviews.map((r, i) => (
+            <div key={i} style={{
+              background: 'var(--bg)',
+              border: '1px solid var(--line)',
+              borderRadius: 14,
+              padding: '24px 22px',
+              display: 'flex', flexDirection: 'column', gap: 14,
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{
+                  width: 40, height: 40, borderRadius: '50%',
+                  background: 'var(--ink)', color: 'var(--paper)',
+                  display: 'grid', placeItems: 'center',
+                  fontFamily: 'var(--font-head)', fontStyle: 'italic',
+                  fontSize: 18, flexShrink: 0,
+                }}>{r.avatar}</div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>{r.name}</div>
+                  <div style={{ fontSize: 12, color: 'var(--muted)' }}>{r.date}</div>
+                </div>
+              </div>
+              <Stars n={r.rating} />
+              <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0 }}>"{r.text}"</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: 32 }}>
+          <a
+            href="https://www.google.com/search?q=Jersey%27s+Corner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-ghost"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Read all reviews on Google
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Hero, MenuPreview, AboutPreview, Bestsellers, HoursStrip, GoogleReviews });
